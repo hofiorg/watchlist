@@ -1,0 +1,171 @@
+<html>
+  <head>
+    <title>Watchlist</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <meta name="viewport" content = "width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 1, user-scalable = no" />
+    <meta name="apple-mobile-web-app-title" content="Watchlist" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./watchlist.js"></script>
+  </head>
+  <body>
+    <div class="table">
+      <div class="tr">
+        <div class="td_title">Name</div>
+        <div class="td_title">ISIN / K&uuml;rzel</div>
+        <div class="td_title">Handelsplatz</div>
+        <div class="td_r_title">Einzelpreis</div>
+        <div class="td_r_title">St&uuml;ckzahl</div>
+        <div class="td_r_title">Preis</div>
+        <div class="td_r_title">Transaktionsgeb.</div>
+        <div class="td_r_title">aktueller Kurs</div>
+        <div class="td_title">Zeit</div>
+        <div class="td_r_title">Gewinn/Verlust</div>
+        <div class="td_r_title">Einstandskurs</div>
+        <div class="td_r_title">Einstandswert</div>
+        <div class="td_r_title">G/V nach Geb&uuml;hr</div>
+        <div class="td_r_title">G/V Prozent</div>
+      </div>
+
+      <div class="tr">
+        <a href="http://www.finanzen.net/aktien/Apple-Aktie"><div class="td" id="name_0"></div></a>
+        <div class="td" id="isin_0"></div>
+        <div class="td" id="handelsplatz_0"></div>
+        <div class="td_r" id="einzelpreis_0"></div>
+        <div class="td_r" id="stueckzahl_0"></div>
+        <div class="td_r" id="preis_0"></div>
+        <div class="td_r" id="transaktionsgebuehr_0"></div>
+        <div class="td_r orange" id="aktueller_kurs_0"></div>
+        <div class="td" id="zeit_0"></div>
+        <div class="td_r" id="gewinn_verlust_0"></div>
+        <div class="td_r" id="einstandskurs_0"></div>
+        <div class="td_r" id="einstandswert_0"></div>
+        <div class="td_r" id="guv_nach_gebuehr_0"></div>
+        <div class="td_r" id="guv_prozent_0"></div>
+      </div>
+
+      <div class="tr">
+        <a href="http://www.finanzen.net/aktien/Tesla-Aktie"><div class="td" id="name_1"></div></a>
+        <div class="td" id="isin_1"></div>
+        <div class="td" id="handelsplatz_1"></div>
+        <div class="td_r" id="einzelpreis_1"></div>
+        <div class="td_r" id="stueckzahl_1"></div>
+        <div class="td_r" id="preis_1"></div>
+        <div class="td_r" id="transaktionsgebuehr_1"></div>
+        <div class="td_r orange" id="aktueller_kurs_1"></div>
+        <div class="td" id="zeit_1"></div>
+        <div class="td_r" id="gewinn_verlust_1"></div>
+        <div class="td_r" id="einstandskurs_1"></div>
+        <div class="td_r" id="einstandswert_1"></div>
+        <div class="td_r" id="guv_nach_gebuehr_1"></div>
+        <div class="td_r" id="guv_prozent_1"></div>
+      </div>
+
+      <div class="tr">
+        <a href="https://www.kraken.com/charts"><div class="td" id="name_2"></div></a>
+        <div class="td" id="isin_2"></div>
+        <div class="td" id="handelsplatz_2"></div>
+        <div class="td_r" id="einzelpreis_2"></div>
+        <div class="td_r" id="stueckzahl_2"></div>
+        <div class="td_r" id="preis_2"></div>
+        <div class="td_r" id="transaktionsgebuehr_2"></div>
+        <div class="td_r orange" id="aktueller_kurs_2"></div>
+        <div class="td" id="zeit_2"></div>
+        <div class="td_r" id="gewinn_verlust_2"></div>
+        <div class="td_r" id="einstandskurs_2"></div>
+        <div class="td_r" id="einstandswert_2"></div>
+        <div class="td_r" id="guv_nach_gebuehr_2"></div>
+        <div class="td_r" id="guv_prozent_2"></div>
+      </div>
+
+      <div class="tr">
+        <a href="http://www.finanzen.net/devisen/bitcoin-cash-euro-kurs"><div class="td" id="name_3"></div></a>
+        <div class="td" id="isin_3"></div>
+        <div class="td" id="handelsplatz_3"></div>
+        <div class="td_r" id="einzelpreis_3"></div>
+        <div class="td_r" id="stueckzahl_3"></div>
+        <div class="td_r" id="preis_3"></div>
+        <div class="td_r" id="transaktionsgebuehr_3"></div>
+        <div class="td_r orange" id="aktueller_kurs_3"></div>
+        <div class="td" id="zeit_3"></div>
+        <div class="td_r" id="gewinn_verlust_3"></div>
+        <div class="td_r" id="einstandskurs_3"></div>
+        <div class="td_r" id="einstandswert_3"></div>
+        <div class="td_r" id="guv_nach_gebuehr_3"></div>
+        <div class="td_r" id="guv_prozent_3"></div>
+      </div>
+
+      <div class="tr">
+        <div class="td"></div>
+      </div>
+
+      <div class="tr">
+        <div class="td_total" id="name_4"></div>
+        <div class="td_total" id="isin_4"></div>
+        <div class="td_total" id="handelsplatz_4"></div>
+        <div class="td_r_total" id="einzelpreis_4"></div>
+        <div class="td_r_total" id="stueckzahl_4"></div>
+        <div class="td_r_total" id="preis_4"></div>
+        <div class="td_r_total" id="transaktionsgebuehr_4"></div>
+        <div class="td_r_total orange" id="aktueller_kurs_4"></div>
+        <div class="td" id="zeit_4"></div>
+        <div class="td_r_total" id="gewinn_verlust_4"></div>
+        <div class="td_r_total" id="einstandskurs_4"></div>
+        <div class="td_r_total" id="einstandswert_4"></div>
+        <div class="td_r_total" id="guv_nach_gebuehr_4"></div>
+        <div class="td_r_total" id="guv_prozent_4"></div>
+      </div>
+
+      <div class="tr">
+        <div class="td_total" id="name_5"></div>
+        <div class="td_total" id="isin_5"></div>
+        <div class="td_total" id="handelsplatz_5"></div>
+        <div class="td_r_total" id="einzelpreis_5"></div>
+        <div class="td_r_total" id="stueckzahl_5"></div>
+        <div class="td_r_total" id="preis_5"></div>
+        <div class="td_r_total" id="transaktionsgebuehr_5"></div>
+        <div class="td_r_total orange" id="aktueller_kurs_5"></div>
+        <div class="td" id="zeit_5"></div>
+        <div class="td_r_total_sum" id="gewinn_verlust_5"></div>
+        <div class="td_r_total" id="einstandskurs_5"></div>
+        <div class="td_r_total" id="einstandswert_5"></div>
+        <div class="td_r_total" id="guv_nach_gebuehr_5"></div>
+        <div class="td_r_total" id="guv_prozent_5"></div>
+      </div>
+    </div>
+
+    <div style="height:50px">
+
+    </div>
+    <div class="table">
+      <div class="tr">
+        <div style="width: 600px; display:table-cell;">
+          <div class="btcwdgt-chart" bw-cur="eur"></div>
+        </div>
+        <div style="display:table-cell; vertical-align: top">
+          <div>
+            <div class="btcwdgt-price" bw-cur="eur"></div>
+          </div>
+          <div style="padding-top: 1px">
+            <div class="btcwdgt-price" bw-cur="eur" bw-cash="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+  (function(b,i,t,C,O,I,N) {
+    window.addEventListener('load',function() {
+      if(b.getElementById(C))return;
+      I=b.createElement(i),N=b.getElementsByTagName(i)[0];
+      I.src=t;I.id=C;N.parentNode.insertBefore(I, N);
+    },false)
+  })(document,'script','https://widgets.bitcoin.com/widget.js','btcwdgt');
+    </script>
+  </body>
+</html>

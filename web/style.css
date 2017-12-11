@@ -1,0 +1,120 @@
+body {
+  background-color: black;
+  color: lightgrey;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+}
+a:link {
+  color: lightgrey;
+  text-decoration: none;
+}
+a:visited {
+  color: lightgrey;
+  text-decoration: none;
+}
+a:hover {
+  color: lightgrey;
+  text-decoration: none;
+}
+a:active {
+  color: lightgrey;
+  text-decoration: none;
+}
+div.table {
+  display: table;
+  border-collapse:collapse;
+}
+div.tr {
+  display:table-row;
+}
+div.td_title {
+  display:table-cell;
+  padding:5px;
+  font-size: 10px;
+  color: grey;
+}
+div.td_r_title {
+  display:table-cell;
+  padding:5px;
+  text-align: right;
+  font-size: 10px;
+  color: grey;
+}
+div.td_total {
+  display:table-cell;
+  padding:5px;
+  font-size: 12px;
+}
+div.td_r_total {
+  display:table-cell;
+  padding:5px;
+  text-align: right;
+  font-size: 12px;
+}
+div.td_r_total_sum {
+  display:table-cell;
+  padding:5px 5px 0px 5px;
+  text-align: right;
+  font-size: 12px;
+  border-bottom: 3px double;
+}
+div.td {
+  display:table-cell;
+  padding:5px;
+}
+div.td_r {
+  display:table-cell;
+  padding:5px;
+  text-align: right;
+}
+div.orange {
+  color: orange;
+}
+div.green {
+  color: green;
+}
+div.red {
+  color: red;
+}
+div.green_bg {
+  color: black;
+  background-color: green;
+}
+div.red_bg {
+  color: black;
+  background-color: red;
+}
+
+div.blink_green {
+  animation: animation_green 1s steps(1, start) 1;
+  -webkit-animation: animation_green 1s steps(1, start) 1;
+}
+@keyframes animation_green {
+  to {
+    color: black;
+    background-color: green;
+  }
+}
+@-webkit-keyframes animation_green {
+  to {
+    color: black;
+    background-color: green;
+  }
+}
+
+div.blink_red {
+  animation: animation_red 1s steps(1, start) 1;
+  -webkit-animation: animation_red 1s steps(1, start) 1;
+}
+@keyframes animation_red {
+  to {
+    color: black;
+    background-color: red;
+  }
+}
+@-webkit-keyframes animation_red {
+  to {
+    color: black;
+    background-color: red;
+  }
+}
