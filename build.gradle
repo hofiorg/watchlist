@@ -24,7 +24,7 @@ task ftp << {
     taskdef(name: 'ftp',
             classname: 'org.apache.tools.ant.taskdefs.optional.net.FTP',
             classpath: configurations.ftpAntTask.asPath)
-    ftp(server: "hofi.org", userid: "hofi.org", password: "", remoteDir: "/watchlist") {
+    ftp(server: "hofi.org", userid: "hofi.org", password: "$passwd", remoteDir: "/watchlist") {
       fileset(dir: "./web") {
         include(name: "*")
       }
