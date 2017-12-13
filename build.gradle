@@ -31,3 +31,13 @@ task ftp << {
     }
   }
 }
+
+task start_php_server (type: Exec) {
+  ignoreExitValue true
+  commandLine "scripts/start_php_server.sh"
+}
+
+task stop_php_server(type: Exec) {
+  ignoreExitValue true
+  commandLine "scripts/stop_php_server.sh"
+}

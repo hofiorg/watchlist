@@ -1,0 +1,1 @@
+pkill -9 -f php -S localhost:9000

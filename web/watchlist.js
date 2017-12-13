@@ -5,16 +5,16 @@ function read_watchlist() {
   $.getJSON("watchlist.php", function(json) {
     jQuery.each(json, function(index, val) {
       jQuery.each(val, function(name, v) {
-        orig_v = v;
-        field = $("#" + name + "_" + index);
-        if(name === 'gewinn_verlust' || name == 'guv_nach_gebuehr') {
+        let orig_v = v;
+        let field = $("#" + name + "_" + index);
+        if(name === 'gewinn_verlust' || name === 'guv_nach_gebuehr') {
           if(v > 0)
             field.addClass("green");
           if(v < 0)
             field.addClass("red");
         }
 
-        if(name == 'guv_prozent') {
+        if(name === 'guv_prozent') {
           if(v > 0)
             field.addClass("green_bg");
           if(v < 0)
@@ -40,12 +40,12 @@ function read_watchlist() {
           v = v.toLocaleString('de-DE', { minimumFractionDigits: 2 });
 
         if(name === 'aktueller_kurs') {
-          letzter_kurs = field.html();
+          let letzter_kurs = field.html();
           letzter_kurs = letzter_kurs.substr(0, letzter_kurs.indexOf('&'));
-          neuer_kurs = orig_v.toLocaleString('de-DE', { minimumFractionDigits: 2 });;
+          let neuer_kurs = orig_v.toLocaleString('de-DE', { minimumFractionDigits: 2 });
           if(letzter_kurs !== neuer_kurs) {
-            var letzter_kurs_float = parseFloat(letzter_kurs.replace(/[^0-9-]/g, ''));
-            var neuer_kurs_float = parseFloat(neuer_kurs.replace(/[^0-9-]/g, ''));
+            let letzter_kurs_float = parseFloat(letzter_kurs.replace(/[^0-9-]/g, ''));
+            let neuer_kurs_float = parseFloat(neuer_kurs.replace(/[^0-9-]/g, ''));
             if(!isNaN(letzter_kurs_float)) {
               if(neuer_kurs_float >= letzter_kurs_float)
                 field.addClass("blink_green");
@@ -60,19 +60,20 @@ function read_watchlist() {
       });
     });
 
-    setTimeout(read_watchlist, 30000);
-
     $(".btcwdgt-footer").remove();
+
+    setTimeout(read_watchlist, 30000);
   });
 
   function remove_blink() {
-    $("#aktueller_kurs_0").removeClass("blink_green");
-    $("#aktueller_kurs_1").removeClass("blink_green");
-    $("#aktueller_kurs_2").removeClass("blink_green");
-    $("#aktueller_kurs_3").removeClass("blink_green");
-    $("#aktueller_kurs_0").removeClass("blink_red");
-    $("#aktueller_kurs_1").removeClass("blink_red");
-    $("#aktueller_kurs_2").removeClass("blink_red");
-    $("#aktueller_kurs_3").removeClass("blink_red");
+    remove_class($("#aktueller_kurs_0"));
+    remove_class($("#aktueller_kurs_1"));
+    remove_class($("#aktueller_kurs_2"));
+    remove_class($("#aktueller_kurs_3"));
+  }
+
+  function remove_class(selector) {
+    selector.removeClass("blink_green");
+    selector.removeClass("blink_red");
   }
 }
