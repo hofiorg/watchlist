@@ -1,11 +1,12 @@
 <?php
 
-set_error_handler(function() { /* ignore errors */ });
+// set_error_handler(function() { /* ignore errors */ });
 
 $apple = apple();
 $tesla = tesla();
 $bitcoin = bitcoin();
 $bitcoin_cash = bitcoin_cash();
+$raiblocks = raiblocks($bitcoin['aktueller_kurs']);
 
 $total = total($apple, $tesla, $bitcoin, $bitcoin_cash);
 $total_2 = total_2($total);
@@ -15,6 +16,7 @@ $watchlist = array(
   $tesla,
   $bitcoin,
   $bitcoin_cash,
+  $raiblocks,
   $total,
   $total_2
 );
@@ -81,6 +83,20 @@ function bitcoin_cash() {
   return line($name, $isin, $handelsplatz, $einzelpreis, $stueckzahl, $transaktionsgebuehr, $einstandskurs, $parse_result['aktueller_kurs'], $parse_result['zeit']);
 }
 
+function raiblocks($bitcoin_kurs) {
+  $name = 'RaiBlocks';
+  $isin = 'XRB';
+  $handelsplatz = 'coinmarketcap';
+  $einzelpreis = 27.17;
+  $stueckzahl = 1.840729;
+  $transaktionsgebuehr = 1.00;
+  $einstandskurs = 27.1631;
+
+  $parse_result = parse_coinmarketcap("https://coinmarketcap.com/currencies/raiblocks/");
+
+  return line($name, $isin, $handelsplatz, $einzelpreis, $stueckzahl, $transaktionsgebuehr, $einstandskurs, $parse_result['aktueller_kurs'] * $bitcoin_kurs, $parse_result['zeit']);
+}
+
 function parse_finanzen_net($url) {
   $html = file_get_contents($url);
   if($html !== false) {
@@ -134,6 +150,26 @@ function parse_kraken($url) {
   date_default_timezone_set("Europe/Berlin");
   $zeit = date("H:i:s", time());
 
+  return array(
+    'aktueller_kurs' => $aktueller_kurs,
+    'zeit' => $zeit);
+}
+
+function parse_coinmarketcap($url) {
+  $html = file_get_contents($url);
+  if($html !== false) {
+    $pos = strpos($html, "text-gray details-text-medium") + 31;
+    $pos_2 = strpos($html, "BTC", $pos) - 1;
+    $val = substr($html, $pos, $pos_2 - $pos);
+
+    $aktueller_kurs = floatval(str_replace(',', '.', $val));
+
+    date_default_timezone_set("Europe/Berlin");
+    $zeit = date("H:i:s", time());
+  } else {
+    $aktueller_kurs = '';
+    $zeit = '';
+  }
   return array(
     'aktueller_kurs' => $aktueller_kurs,
     'zeit' => $zeit);

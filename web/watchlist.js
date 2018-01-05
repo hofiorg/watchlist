@@ -70,6 +70,7 @@ function read_watchlist() {
     remove_class($("#aktueller_kurs_1"));
     remove_class($("#aktueller_kurs_2"));
     remove_class($("#aktueller_kurs_3"));
+    remove_class($("#aktueller_kurs_4"));
   }
 
   function remove_class(selector) {
