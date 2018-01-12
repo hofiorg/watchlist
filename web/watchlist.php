@@ -1,6 +1,6 @@
 <?php
 
-// set_error_handler(function() { /* ignore errors */ });
+set_error_handler(function() { /* ignore errors */ });
 
 $apple = apple();
 $tesla = tesla();
@@ -61,7 +61,7 @@ function bitcoin() {
   $einstandskurs = 3445.46;
 
   $parse_result = parse_kraken("https://www.kraken.com/charts");
-  if($parse_result === null) {
+  if("".$parse_result['aktueller_kurs'] === "0") {
     $handelsplatz = 'finanzen.net';
     $parse_result = parse_finanzen_net_2("http://www.finanzen.net/devisen/bitcoin-euro-kurs");
   }
@@ -72,7 +72,7 @@ function bitcoin() {
 function bitcoin_cash() {
   $name = 'Bitcoin Cash';
   $isin = 'BCC';
-  $handelsplatz = 'Kraken';
+  $handelsplatz = 'finanzen.net';
   $einzelpreis = 1141.21;
   $stueckzahl = 0.044444;
   $transaktionsgebuehr = 1.01;
@@ -86,7 +86,7 @@ function bitcoin_cash() {
 function raiblocks($bitcoin_kurs) {
   $name = 'RaiBlocks';
   $isin = 'XRB';
-  $handelsplatz = 'coinmarketcap';
+  $handelsplatz = 'cmcap';
   $einzelpreis = 27.17;
   $stueckzahl = 1.840729;
   $transaktionsgebuehr = 1.00;
