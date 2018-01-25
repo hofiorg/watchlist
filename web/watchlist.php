@@ -158,8 +158,8 @@ function parse_kraken($url) {
 function parse_coinmarketcap($url) {
   $html = file_get_contents($url);
   if($html !== false) {
-    $pos = strpos($html, "text-gray details-text-medium") + 31;
-    $pos_2 = strpos($html, "BTC", $pos) - 1;
+    $pos = strpos($html, "data-format-price-crypto data-format-value") + 44;
+    $pos_2 = strpos($html, ">", $pos) - 2;
     $val = substr($html, $pos, $pos_2 - $pos);
 
     $aktueller_kurs = floatval(str_replace(',', '.', $val));
