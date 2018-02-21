@@ -84,7 +84,7 @@ function bitcoin_cash() {
 }
 
 function raiblocks($bitcoin_kurs) {
-  $name = 'RaiBlocks';
+  $name = 'Nano';
   $isin = 'XRB';
   $handelsplatz = 'cmcap';
   $einzelpreis = 27.17;
@@ -92,7 +92,7 @@ function raiblocks($bitcoin_kurs) {
   $transaktionsgebuehr = 1.00;
   $einstandskurs = 27.1631;
 
-  $parse_result = parse_coinmarketcap("https://coinmarketcap.com/currencies/raiblocks/");
+  $parse_result = parse_coinmarketcap("https://coinmarketcap.com/currencies/nano/");
 
   return line($name, $isin, $handelsplatz, $einzelpreis, $stueckzahl, $transaktionsgebuehr, $einstandskurs, $parse_result['aktueller_kurs'] * $bitcoin_kurs, $parse_result['zeit']);
 }
