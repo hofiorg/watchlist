@@ -19,14 +19,16 @@ dependencies {
   }
 }
 
-task ftp << {
-  ant {
-    taskdef(name: 'ftp',
-            classname: 'org.apache.tools.ant.taskdefs.optional.net.FTP',
-            classpath: configurations.ftpAntTask.asPath)
-    ftp(server: "hofi.org", userid: "hofi.org", password: "$ftp_password", remoteDir: "/watchlist") {
-      fileset(dir: "./web") {
-        include(name: "*")
+task ftp {
+  doLast {
+    ant {
+      taskdef(name: 'ftp_command',
+              classname: 'org.apache.tools.ant.taskdefs.optional.net.FTP',
+              classpath: configurations.ftpAntTask.asPath)
+      ftp_command(server: "hofi.org", userid: "hofi.org", password: "$ftp_password", remoteDir: "/watchlist") {
+        fileset(dir: "./web") {
+          include(name: "*")
+        }
       }
     }
   }
