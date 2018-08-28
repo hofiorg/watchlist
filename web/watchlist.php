@@ -226,7 +226,7 @@ function total($apple, $tesla, $bitcoin, $bitcoin_cash) {
 }
 
 function total_2($total) {
-  $gewinn_verlust = $total['gewinn_verlust'] + 26.63;
+  $gewinn_verlust = $total['gewinn_verlust'] + 28.06;
 
   return array(
     'name' => 'Gesamt',

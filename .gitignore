@@ -1,3 +1,5 @@
-.idea
+.idea/**
+!/.idea/runConfigurations/*.xml
+!/.idea/runConfigurations/
 watchlist.iml
 gradle.properties
