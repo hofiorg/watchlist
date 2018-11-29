@@ -226,7 +226,15 @@ function total($apple, $tesla, $bitcoin, $bitcoin_cash) {
 }
 
 function total_2($total) {
-  $gewinn_verlust = $total['gewinn_verlust'] + 28.06 + 1.43;
+  $gewinn_verlust = $total['gewinn_verlust']
+    + 21.73 // Verkauf   Tesla 21.08.2017
+    +  1.20 // Dividende Apple 17.08.2017
+    +  1.20 // Dividende Apple 17.11.2017
+    +  1.12 // Dividende Apple 16.02.2018
+    +  1.38 // Dividende Apple 18.05.2018
+    +  1.43 // Dividende Apple 16.08.2018
+    +  1.43 // Dividende Apple 16.11.2018
+    ;
 
   return array(
     'name' => 'Gesamt',
