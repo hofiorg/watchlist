@@ -8,7 +8,7 @@ $bitcoin = bitcoin();
 $bitcoin_cash = bitcoin_cash();
 $raiblocks = raiblocks($bitcoin['aktueller_kurs']);
 
-$total = total($apple, $tesla, $bitcoin, $bitcoin_cash);
+$total = total($apple, $tesla, $bitcoin, $bitcoin_cash, $raiblocks);
 $total_2 = total_2($total);
 
 $watchlist = array(
@@ -207,12 +207,12 @@ function line($name, $isin, $handelsplatz, $einzelpreis, $stueckzahl, $transakti
   );
 }
 
-function total($apple, $tesla, $bitcoin, $bitcoin_cash) {
-  $preis = $apple['preis'] + $tesla['preis'] + $bitcoin['preis'] + $bitcoin_cash['preis'];
-  $transaktionsgebuehr = $apple['transaktionsgebuehr'] + $tesla['transaktionsgebuehr'] + $bitcoin['transaktionsgebuehr'] + $bitcoin_cash['transaktionsgebuehr'];
-  $gewinn_verlust = $apple['gewinn_verlust'] + $tesla['gewinn_verlust'] + $bitcoin['gewinn_verlust'] + $bitcoin_cash['gewinn_verlust'];
-  $einstandswert = $apple['einstandswert'] + $tesla['einstandswert'] + $bitcoin['einstandswert'] + $bitcoin_cash['einstandswert'];
-  $guv_nach_gebuehr = $apple['guv_nach_gebuehr'] + $tesla['guv_nach_gebuehr'] + $bitcoin['guv_nach_gebuehr'] + $bitcoin_cash['guv_nach_gebuehr'];
+function total($apple, $tesla, $bitcoin, $bitcoin_cash, $raiblocks) {
+  $preis = $apple['preis'] + $tesla['preis'] + $bitcoin['preis'] + $bitcoin_cash['preis'] + $raiblocks['preis'];
+  $transaktionsgebuehr = $apple['transaktionsgebuehr'] + $tesla['transaktionsgebuehr'] + $bitcoin['transaktionsgebuehr'] + $bitcoin_cash['transaktionsgebuehr'] + $raiblocks['transaktionsgebuehr'];
+  $gewinn_verlust = $apple['gewinn_verlust'] + $tesla['gewinn_verlust'] + $bitcoin['gewinn_verlust'] + $bitcoin_cash['gewinn_verlust'] + $raiblocks['gewinn_verlust'];
+  $einstandswert = $apple['einstandswert'] + $tesla['einstandswert'] + $bitcoin['einstandswert'] + $bitcoin_cash['einstandswert'] + + $raiblocks['einstandswert'];
+  $guv_nach_gebuehr = $apple['guv_nach_gebuehr'] + $tesla['guv_nach_gebuehr'] + $bitcoin['guv_nach_gebuehr'] + $bitcoin_cash['guv_nach_gebuehr'] + $raiblocks['guv_nach_gebuehr'];
   $guv_prozent = 100 / ($preis + $transaktionsgebuehr) * $guv_nach_gebuehr / 100;
 
   return array(
