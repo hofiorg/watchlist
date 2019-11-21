@@ -158,10 +158,10 @@ function parse_kraken($url) {
 function parse_coinmarketcap($url) {
   $html = file_get_contents($url);
   if($html !== false) {
-    $pos_0 = strpos($html, "data-format-price-crypto data-format-value");
-    $pos = strpos($html, ">", $pos_0) + 1;
-    $pos_2 = strpos($html, "<", $pos) - 1;
-    $val = substr($html, $pos, $pos_2 - $pos);
+    $pos_0 = strpos($html, '"cmc-details-panel-price__crypto-price"');
+    $pos = strpos($html, '>', $pos_0);
+    $pos_2 = strpos($html, ' ', $pos);
+    $val = substr($html, $pos + 1, $pos_2 - $pos);
 
     $aktueller_kurs = floatval(str_replace(',', '.', $val));
 
@@ -238,6 +238,7 @@ function total_2($total) {
     +  1.44 // Dividende Apple 14.02.2019
     +  1.53 // Dividende Apple 16.05.2019
     +  1.54 // Dividende Apple 20.08.2019
+    +  1.56 // Dividende Apple 14.11.2019
     ;
 
   return array(
