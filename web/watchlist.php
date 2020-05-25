@@ -240,6 +240,7 @@ function total_2($total) {
     +  1.54 // Dividende Apple 20.08.2019
     +  1.56 // Dividende Apple 14.11.2019
     +  1.58 // Dividende Apple 20.02.2020
+    +  1.68 // Dividende Apple 23.05.2020
     ;
 
   return array(
