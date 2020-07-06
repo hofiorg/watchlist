@@ -103,7 +103,7 @@ function parse_finanzen_net($url) {
     $pos = strpos($html, "col-xs-5 col-sm-4 text-sm-right text-nowrap") + 45;
     $pos_2 = strpos($html, "span", $pos) - 1;
     $val = substr($html, $pos, $pos_2 - $pos);
-    $aktueller_kurs = floatval(str_replace(',', '.', $val));
+    $aktueller_kurs = floatval(str_replace(',', '.', str_replace('.', '', $val)));
 
     $pos = strpos($html, "quotebox-time") + 15;
     $pos_2 = strpos($html, "div", $pos) - 2;
