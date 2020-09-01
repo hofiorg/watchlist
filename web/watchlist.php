@@ -27,10 +27,10 @@ function apple() {
   $name = 'Apple Aktie';
   $isin = 'US0378331005';
   $handelsplatz = 'Xetra';
-  $einzelpreis = 129;
-  $stueckzahl = 3;
+  $einzelpreis = 32.25;
+  $stueckzahl = 12;
   $transaktionsgebuehr = 6.25;
-  $einstandskurs = 131.0833;
+  $einstandskurs = 32.770833;
 
   $parse_result = parse_finanzen_net("http://www.finanzen.net/aktien/Apple-Aktie");
 
@@ -41,10 +41,10 @@ function tesla() {
   $name = 'Tesla Aktie';
   $isin = 'US88160R1014';
   $handelsplatz = 'Xetra';
-  $einzelpreis = 289;
-  $stueckzahl = 6;
+  $einzelpreis = 57.8;
+  $stueckzahl = 30;
   $transaktionsgebuehr = 6.25;
-  $einstandskurs = 290.0417;
+  $einstandskurs = 58.008333;
 
   $parse_result = parse_finanzen_net("http://www.finanzen.net/aktien/Tesla-Aktie");
 
