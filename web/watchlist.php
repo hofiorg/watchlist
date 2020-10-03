@@ -60,8 +60,8 @@ function bitcoin() {
   $transaktionsgebuehr = 1.00;
   $einstandskurs = 3445.46;
 
-  $parse_result = parse_kraken("https://www.kraken.com/charts");
-  if("".$parse_result['aktueller_kurs'] === "0") {
+  $parse_result = null; // parse_kraken("https://www.kraken.com");
+  if($parse_result === null || "".$parse_result['aktueller_kurs'] === "0") {
     $handelsplatz = 'finanzen.net';
     $parse_result = parse_finanzen_net_2("http://www.finanzen.net/devisen/bitcoin-euro-kurs");
   }
@@ -143,8 +143,8 @@ function parse_kraken($url) {
   if($html === false) {
     return null;
   }
-  $pos = strpos($html, "data-val") + 10;
-  $pos_2 = strpos($html, " ", $pos) - 1;
+  $pos = strpos($html, "asset-price black-color") + 3;
+  $pos_2 = strpos($html, "<", $pos) - 1;
   $val = substr($html, $pos, $pos_2 - $pos);
   $aktueller_kurs = (float)$val;
   date_default_timezone_set("Europe/Berlin");
