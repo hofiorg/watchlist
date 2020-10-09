@@ -7,30 +7,25 @@ repositories{
   mavenCentral()
 }
 
-configurations {
-  ftpAntTask
-}
+configurations { sshAntTask }
 
-dependencies {
-  ftpAntTask("org.apache.ant:ant-commons-net:1.8.4") {
-    module("commons-net:commons-net:1.4.1") {
-      dependencies "oro:oro:2.0.8:jar"
-    }
-  }
-}
+dependencies { sshAntTask 'org.apache.ant:ant-jsch:1.10.9' }
 
-task ftp {
+ant.taskdef(
+        name: 'scp',
+        classname: 'org.apache.tools.ant.taskdefs.optional.ssh.Scp',
+        classpath: configurations.sshAntTask.asPath)
+
+task sftp {
   doLast {
-    ant {
-      taskdef(name: 'ftp_command',
-              classname: 'org.apache.tools.ant.taskdefs.optional.net.FTP',
-              classpath: configurations.ftpAntTask.asPath)
-      ftp_command(server: "hofi.org", userid: "hofi.org", password: "$ftp_password", remoteDir: "/watchlist") {
-        fileset(dir: "./web") {
-          include(name: "*")
-        }
-      }
-    }
+    ant.scp(
+            file: 'web/**',
+            todir: "$sftp_username@$sftp_host:/watchlist",
+            password: "$sftp_password",
+            trust: true,
+            sftp: true,
+            failonerror: true
+    )
   }
 }
 

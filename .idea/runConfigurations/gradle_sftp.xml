@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="gradle ftp" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="gradle sftp" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -10,11 +10,12 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="ftp" />
+          <option value="sftp" />
         </list>
       </option>
       <option name="vmOptions" value="" />
     </ExternalSystemSettings>
+    <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
     <method v="2" />
   </configuration>
 </component>
