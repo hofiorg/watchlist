@@ -5,18 +5,14 @@ set_error_handler(function() { /* ignore errors */ });
 $apple = apple();
 $tesla = tesla();
 $bitcoin = bitcoin();
-$bitcoin_cash = bitcoin_cash();
-$raiblocks = raiblocks($bitcoin['aktueller_kurs']);
 
-$total = total($apple, $tesla, $bitcoin, $bitcoin_cash, $raiblocks);
+$total = total($apple, $tesla, $bitcoin);
 $total_2 = total_2($total);
 
 $watchlist = array(
   $apple,
   $tesla,
   $bitcoin,
-  $bitcoin_cash,
-  $raiblocks,
   $total,
   $total_2
 );
@@ -67,34 +63,6 @@ function bitcoin() {
   }
 
   return line($name, $isin, $handelsplatz, $einzelpreis, $stueckzahl, $transaktionsgebuehr, $einstandskurs, $parse_result['aktueller_kurs'], $parse_result['zeit']);
-}
-
-function bitcoin_cash() {
-  $name = 'Bitcoin Cash';
-  $isin = 'BCC';
-  $handelsplatz = 'finanzen.net';
-  $einzelpreis = 1141.21;
-  $stueckzahl = 0.044444;
-  $transaktionsgebuehr = 1.01;
-  $einstandskurs = 1141.2114;
-
-  $parse_result = parse_finanzen_net_2("http://www.finanzen.net/devisen/bitcoin-cash-euro-kurs");
-
-  return line($name, $isin, $handelsplatz, $einzelpreis, $stueckzahl, $transaktionsgebuehr, $einstandskurs, $parse_result['aktueller_kurs'], $parse_result['zeit']);
-}
-
-function raiblocks($bitcoin_kurs) {
-  $name = 'Nano';
-  $isin = 'XRB';
-  $handelsplatz = 'cmcap';
-  $einzelpreis = 27.17;
-  $stueckzahl = 1.840729;
-  $transaktionsgebuehr = 1.00;
-  $einstandskurs = 27.1631;
-
-  $parse_result = parse_coinmarketcap("https://coinmarketcap.com/currencies/nano/");
-
-  return line($name, $isin, $handelsplatz, $einzelpreis, $stueckzahl, $transaktionsgebuehr, $einstandskurs, $parse_result['aktueller_kurs'] * $bitcoin_kurs, $parse_result['zeit']);
 }
 
 function parse_finanzen_net($url) {
@@ -155,27 +123,6 @@ function parse_kraken($url) {
     'zeit' => $zeit);
 }
 
-function parse_coinmarketcap($url) {
-  $html = file_get_contents($url);
-  if($html !== false) {
-    $pos_0 = strpos($html, '"cmc-details-panel-price__crypto-price"');
-    $pos = strpos($html, '>', $pos_0);
-    $pos_2 = strpos($html, ' ', $pos);
-    $val = substr($html, $pos + 1, $pos_2 - $pos);
-
-    $aktueller_kurs = floatval(str_replace(',', '.', $val));
-
-    date_default_timezone_set("Europe/Berlin");
-    $zeit = date("H:i:s", time());
-  } else {
-    $aktueller_kurs = '';
-    $zeit = '';
-  }
-  return array(
-    'aktueller_kurs' => $aktueller_kurs,
-    'zeit' => $zeit);
-}
-
 function line($name, $isin, $handelsplatz, $einzelpreis, $stueckzahl, $transaktionsgebuehr, $einstandskurs, $aktueller_kurs, $zeit) {
   $preis = $einzelpreis * $stueckzahl;
   $gewinn_verlust = ($aktueller_kurs * $stueckzahl) - $preis;
@@ -207,12 +154,12 @@ function line($name, $isin, $handelsplatz, $einzelpreis, $stueckzahl, $transakti
   );
 }
 
-function total($apple, $tesla, $bitcoin, $bitcoin_cash, $raiblocks) {
-  $preis = $apple['preis'] + $tesla['preis'] + $bitcoin['preis'] + $bitcoin_cash['preis'] + $raiblocks['preis'];
-  $transaktionsgebuehr = $apple['transaktionsgebuehr'] + $tesla['transaktionsgebuehr'] + $bitcoin['transaktionsgebuehr'] + $bitcoin_cash['transaktionsgebuehr'] + $raiblocks['transaktionsgebuehr'];
-  $gewinn_verlust = $apple['gewinn_verlust'] + $tesla['gewinn_verlust'] + $bitcoin['gewinn_verlust'] + $bitcoin_cash['gewinn_verlust'] + $raiblocks['gewinn_verlust'];
-  $einstandswert = $apple['einstandswert'] + $tesla['einstandswert'] + $bitcoin['einstandswert'] + $bitcoin_cash['einstandswert'] + + $raiblocks['einstandswert'];
-  $guv_nach_gebuehr = $apple['guv_nach_gebuehr'] + $tesla['guv_nach_gebuehr'] + $bitcoin['guv_nach_gebuehr'] + $bitcoin_cash['guv_nach_gebuehr'] + $raiblocks['guv_nach_gebuehr'];
+function total($apple, $tesla, $bitcoin) {
+  $preis = $apple['preis'] + $tesla['preis'] + $bitcoin['preis'];
+  $transaktionsgebuehr = $apple['transaktionsgebuehr'] + $tesla['transaktionsgebuehr'] + $bitcoin['transaktionsgebuehr'];
+  $gewinn_verlust = $apple['gewinn_verlust'] + $tesla['gewinn_verlust'] + $bitcoin['gewinn_verlust'];
+  $einstandswert = $apple['einstandswert'] + $tesla['einstandswert'] + $bitcoin['einstandswert'];
+  $guv_nach_gebuehr = $apple['guv_nach_gebuehr'] + $tesla['guv_nach_gebuehr'] + $bitcoin['guv_nach_gebuehr'];
   $guv_prozent = 100 / ($preis + $transaktionsgebuehr) * $guv_nach_gebuehr / 100;
 
   return array(
